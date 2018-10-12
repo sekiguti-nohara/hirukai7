@@ -71,17 +71,12 @@
 
 
 <h2>今日のQAリーダです</h2>
+<% @days.each do |user| %>
+	<%= Staff.find_by(air_shift_id: user.qastaff_id).name %>
+	<%= user.start.strftime("%H:%M") %>~<%= user.end.strftime("%H:%M") %>
+<% end %>
 
 <h2>メンバー全員の名前です</h2>
 <% @staffs.each do |user| %>
 <%= user.name %>:<%= user.today_working_hour %><br>
 <% end %>
-
-<!-- <h2>自分のシフトです</h2>
-<% @myshifts.each do |my_shift| %>
-<%= my_shift.group_id %>|<%= my_shift.start.month %>月<%= my_shift.start.day %>日<%= my_shift.start.hour %>~<%= my_shift.end.hour %><br>
-<% end %>
- -->
-<!-- group_id
-3386:wcp
-3385:wc -->
