@@ -72,7 +72,7 @@
 
 <h2>今日のQAリーダです</h2>
 <% @days.each do |user| %>
-	<%= Staff.find_by(air_shift_id: user.qastaff_id).name %>
+	<%= Staff.find_by(air_staff_id: user.qastaff_id).name %>
 	<%= user.start.strftime("%H:%M") %>~<%= user.end.strftime("%H:%M") %>
 <% end %>
 

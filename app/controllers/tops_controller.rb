@@ -319,7 +319,6 @@ class TopsController < ApplicationController
 					staff_new = Staff.new
 					staff_new.air_staff_id = staff["id"]
 					staff_new.name = staff["name"]["family"] + staff["name"]["first"]
-
 					#一度保存したら保存しなくて良い
 					staff_new.save
 				end
@@ -390,6 +389,7 @@ class TopsController < ApplicationController
 		client_id     = ''
 		client_secret = ''
 		refresh_token = ''
+
 
 
 
