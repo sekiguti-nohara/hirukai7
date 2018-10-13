@@ -1,0 +1,9 @@
+ここは<%= @rest.staff.name %>の休憩シフト編集ページです
+
+<%= form_for @rest,url: rest_update_path(id: @rest) do |f| %>
+	<p>休憩開始時刻</p>
+	<p><%= f.time_select :rest_start%></p>
+	<p>休憩時間</p>
+	<p><%= f.select :rest_time, [["30分",30],["60分",60]]%></p>
+	<p><%= f.submit %></p>
+<% end %>

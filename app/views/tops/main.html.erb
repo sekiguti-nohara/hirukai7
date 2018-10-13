@@ -1,0 +1,87 @@
+<h1 class = "title" >ひるかいくん</h1>
+
+<p class = "slack_button" ><%= link_to "slackに投稿する", slack_path, method: :post,class: "button" %></p>
+
+<h2>今日のメンバーです</h2>
+<table>
+	<thead>
+		<th>分類</th><th>名前</th><th>時間</th>
+	</thead>
+	<tbody>
+		<% @today_shifts.order("group_id").each do |today_shift| %>
+			<div class = "today_staff">
+				<% if today_shift.group_id != nil %>
+					<tr>
+						<td><%= today_shift.group_id %></td>
+						<td><%= today_shift.staff.name %></td>
+						<td><%= today_shift.start.strftime("%H:%M") %>~<%= today_shift.end.strftime("%H:%M") %></td>
+					</tr>
+				<% end %>
+			</div>
+		<% end %>
+	</tbody>
+</table>
+
+<h2>今日の新人研修です</h2>
+<table>
+	<thead>
+		<th>分類</th><th>名前</th><th>時間</th>
+	</thead>
+	<tbody>
+		<% @today_trains.each do |train_shift| %>
+			<div class = "train_staff">
+				<tr>
+					<td>
+						<% if train_shift.which == "training" %>
+							(研修)
+						<% else %>
+							(OJT)
+						<% end %>
+					</td>
+					<td><%= train_shift.staff.name %></td>
+					<td><%= train_shift.start.strftime("%H:%M") %>~<%= train_shift.end.strftime("%H:%M") %></td>
+				</tr>
+			</div>
+		<% end %>
+	</tbody>
+</table>
+
+
+<h2>今日の休憩シフトです</h2>
+<table>
+	<thead>
+		<th>名前</th><th>休憩時間</th>
+	</thead>
+	<tbody>
+		<% @rests.each do |rest| %>
+			<tr>
+				<td><%= rest.staff.name %></td>
+				<td>
+					<% if rest.rest_time != 0 %>
+						<%= rest.rest_start.strftime("%H:%M") %>~<%= (rest.rest_start + rest.rest_time*60).strftime("%H:%M") %>
+					<% else %>
+						研修中に取ってください
+					<% end %>
+				</td>
+				<td><%= link_to "編集する",rest_edit_path(rest) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
+<h2>今日のQAリーダです</h2>
+
+<h2>メンバー全員の名前です</h2>
+<% @staffs.each do |user| %>
+<%= user.name %>:<%= user.today_working_hour %><br>
+<% end %>
+
+<!-- <h2>自分のシフトです</h2>
+<% @myshifts.each do |my_shift| %>
+<%= my_shift.group_id %>|<%= my_shift.start.month %>月<%= my_shift.start.day %>日<%= my_shift.start.hour %>~<%= my_shift.end.hour %><br>
+<% end %>
+ -->
+<!-- group_id
+3386:wcp
+3385:wc -->

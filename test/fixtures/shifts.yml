@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start: 
+  end: 
+  air_staff_id: MyString
+
+two:
+  start: 
+  end: 
+  air_staff_id: MyString
